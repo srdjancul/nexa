@@ -50,6 +50,10 @@ placeholder.
   `globals.css` rule for things utilities can't express.
 - **Responsive:** design mobile-first. Page gutter 20px desktop / 16px mobile,
   container max-width 1400px.
+- **Section rhythm (fixed):** every section gets 64px top and bottom padding,
+  and the gap between a section headline and its content is 48px. Full-screen
+  sections are `calc(100dvh - 68px)` tall (68px = header) and scroll
+  section-to-section via the SnapScroller tween.
 - **Motion** stays subtle and CSS-driven where possible; reach for a JS animation
   library only when a section actually needs it, and respect
   `prefers-reduced-motion`.

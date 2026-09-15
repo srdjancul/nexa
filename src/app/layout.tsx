@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Manrope } from "next/font/google";
 import "./globals.css";
+import CursorSparks from "@/components/visuals/cursor-sparks";
 
 const manrope = Manrope({
   subsets: ["latin"],
@@ -19,7 +20,10 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className={manrope.variable}>
-      <body className="min-h-dvh" suppressHydrationWarning>{children}</body>
+      <body className="min-h-dvh" suppressHydrationWarning>
+        <CursorSparks />
+        {children}
+      </body>
     </html>
   );
 }

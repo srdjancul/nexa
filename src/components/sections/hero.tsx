@@ -3,7 +3,7 @@ import SpectrumField from "@/components/visuals/spectrum-field";
 
 export function Hero() {
   return (
-    <section className="relative isolate overflow-hidden">
+    <section data-snap-section className="relative isolate scroll-mt-[68px] overflow-hidden">
       {/* Full-bleed ribbon field, behind everything. */}
       <div aria-hidden="true" className="absolute inset-0 -z-20">
         <SpectrumField />
@@ -16,7 +16,7 @@ export function Hero() {
       />
 
       <div className="mx-auto max-w-page px-4 sm:px-5">
-        <div className="flex min-h-[calc(100dvh-68px)] flex-col items-center justify-center py-20 text-center">
+        <div className="flex min-h-[calc(100dvh-68px)] flex-col items-center justify-center py-16 text-center">
           <h1 className="rise font-display max-w-[16ch] text-display leading-[1.02] font-medium tracking-[-0.03em] text-balance">
             Know what your agents actually did
           </h1>

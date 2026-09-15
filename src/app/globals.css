@@ -74,6 +74,12 @@ body::after {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -98,6 +104,32 @@ body::after {
 
 .rise {
   animation: rise 700ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+:root {
+  /* Live-current hover for nav links: a slow, tiny quiver plus a soft
+     charge of glow. Amplitude stays under half a pixel so it hums rather
+     than glitches. */
+}
+
+@keyframes nav-hum {
+  0%, 100% { transform: translate(0, 0); }
+  18% { transform: translate(0.4px, -0.3px); }
+  37% { transform: translate(-0.35px, 0.35px); }
+  58% { transform: translate(0.3px, 0.25px); }
+  79% { transform: translate(-0.25px, -0.4px); }
+}
+
+.nav-hum {
+  text-shadow: 0 0 12px rgb(0 229 255 / 0);
+  transition: color 150ms ease, text-shadow 450ms ease;
+}
+
+.nav-hum:hover {
+  animation: nav-hum 1.3s ease-in-out infinite;
+  text-shadow:
+    0 0 14px rgb(0 229 255 / 0.4),
+    0 0 2px rgb(240 245 252 / 0.45);
 }
 
 :focus-visible {
