@@ -1,0 +1,32 @@
+@import "tailwindcss";
+
+/*
+  Design tokens live here, role-based rather than literal, so the real
+  palette and type scale can drop in once the Nexa direction is settled.
+*/
+@theme {
+  --color-ground: #06070a;
+  --color-surface: #0d0f14;
+  --color-line: rgb(255 255 255 / 0.08);
+  --color-ink: #f5f6f7;
+  --color-ink-muted: rgb(245 246 247 / 0.6);
+  --color-ink-faint: rgb(245 246 247 / 0.38);
+
+  --font-display: var(--font-sans);
+  --font-body: var(--font-sans);
+}
+
+:root {
+  color-scheme: dark;
+}
+
+html,
+body {
+  background: var(--color-ground);
+  color: var(--color-ink);
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
