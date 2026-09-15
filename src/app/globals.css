@@ -112,6 +112,20 @@ body::after {
      than glitches. */
 }
 
+/* Hide the scrollbar chrome without disabling scrolling — the page still
+   scrolls by wheel, touch, keyboard and the SnapScroller tween. */
+html {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* legacy Edge */
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  display: none;
+}
+
 @keyframes nav-hum {
   0%, 100% { transform: translate(0, 0); }
   18% { transform: translate(0.4px, -0.3px); }
