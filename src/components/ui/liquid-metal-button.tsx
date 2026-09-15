@@ -418,7 +418,7 @@ export default function LiquidMetalButton(props: LiquidMetalButtonProps) {
     if (!locked && motion.release) input.current.release = 0;
     engineRef.current?.wake();
   };
-  const pointer = (e: React.PointerEvent) => {
+  const pointer = (e: React.PointerEvent<HTMLElement>) => {
     if (locked) return;
     const b = canvasRef.current?.getBoundingClientRect() || (e.currentTarget as HTMLElement).getBoundingClientRect();
     const px = ((e.clientX - b.left) / Math.max(1, b.width)) * 2 - 1;
@@ -452,17 +452,17 @@ export default function LiquidMetalButton(props: LiquidMetalButtonProps) {
       aria-disabled={disabled || undefined}
       tabIndex={disabled ? -1 : undefined}
       aria-label={accessibilityLabel || label || "Button"}
-      onPointerEnter={e => { if (!locked && e.pointerType !== "touch") { input.current.hovering = true; pointer(e); active(); } }}
-      onPointerMove={pointer}
+      onPointerEnter={(e: React.PointerEvent<HTMLElement>) => { if (!locked && e.pointerType !== "touch") { input.current.hovering = true; pointer(e); active(); } }}
+      onPointerMove={(e: React.PointerEvent<HTMLElement>) => pointer(e)}
       onPointerLeave={() => { input.current.hovering = false; press(false); active(); }}
-      onPointerDown={e => { if (e.button === 0) { pointer(e); press(true); } }}
+      onPointerDown={(e: React.PointerEvent<HTMLElement>) => { if (e.button === 0) { pointer(e); press(true); } }}
       onPointerUp={() => { if (input.current.pressed) release(); }}
       onPointerCancel={() => press(false)}
-      onFocus={e => { if (!locked && (e.currentTarget as HTMLElement).matches(":focus-visible")) { input.current.focused = true; input.current.sx = 0.5; input.current.sy = 0.5; active(); } }}
+      onFocus={(e: React.FocusEvent<HTMLElement>) => { if (!locked && (e.currentTarget as HTMLElement).matches(":focus-visible")) { input.current.focused = true; input.current.sx = 0.5; input.current.sy = 0.5; active(); } }}
       onBlur={() => { input.current.focused = false; press(false); active(); }}
-      onKeyDown={e => { if (!e.repeat && (e.key === "Enter" || (!link && e.key === " "))) press(true); }}
-      onKeyUp={e => { if (e.key === "Enter" || (!link && e.key === " ")) release(); }}
-      onClick={e => { if (locked) { e.preventDefault(); return; } onTap?.(); }}
+      onKeyDown={(e: React.KeyboardEvent<HTMLElement>) => { if (!e.repeat && (e.key === "Enter" || (!link && e.key === " "))) press(true); }}
+      onKeyUp={(e: React.KeyboardEvent<HTMLElement>) => { if (e.key === "Enter" || (!link && e.key === " ")) release(); }}
+      onClick={(e: React.MouseEvent<HTMLElement>) => { if (locked) { e.preventDefault(); return; } onTap?.(); }}
       style={{
         "--orb-hover-intensity": hoverStyle.intensity,
         "--orb-hover-core": hoverIsDark ? "rgba(24,36,58,.34)" : "rgba(240,249,255,.30)",
