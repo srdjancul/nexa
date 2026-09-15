@@ -11,14 +11,18 @@ const NAV = [
 export function SiteHeader() {
   return (
     <header className="sticky top-0 z-50 border-b border-line/60 bg-ground/70 backdrop-blur-xl">
-      <div className="mx-auto flex h-[68px] max-w-page items-center justify-between px-4 sm:px-5">
-        {/* Wordmark placeholder — swap for the real mark when it exists. */}
-        <Link
-          href="/"
-          className="font-display text-[1.0625rem] font-medium tracking-[-0.01em]"
-        >
-          Nexa
-        </Link>
+      {/* Three equal-width tracks: logo | links | actions. The outer tracks
+          balance each other, so the links sit on the true page centre. */}
+      <div className="mx-auto grid h-[68px] max-w-page grid-cols-[1fr_auto_1fr] items-center px-4 sm:px-5">
+        <div className="flex justify-start">
+          {/* Wordmark placeholder — swap for the real mark when it exists. */}
+          <Link
+            href="/"
+            className="font-display text-[1.0625rem] font-medium tracking-[-0.01em]"
+          >
+            Nexa
+          </Link>
+        </div>
 
         <nav aria-label="Main" className="hidden md:block">
           <ul className="flex items-center gap-8">
@@ -35,14 +39,14 @@ export function SiteHeader() {
           </ul>
         </nav>
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center justify-end gap-3">
           <Link
             href="#signin"
-            className="text-ink-muted hover:text-ink hidden px-3 py-2 text-sm font-medium transition-colors duration-150 sm:block"
+            className="text-ink-muted hover:text-ink hidden px-2 py-2 text-sm font-medium transition-colors duration-150 sm:block"
           >
             Sign in
           </Link>
-          <Button href="#start" className="h-10 px-5 text-sm">
+          <Button href="#start" size="sm">
             Start free
           </Button>
         </div>

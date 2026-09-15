@@ -169,15 +169,15 @@ export default function SpectrumField({ className = "" }: { className?: string }
     const frame = () => {
       if (!running) return;
       t += 0.016;
-      pointer.x += (pointer.tx - pointer.x) * 0.035;
-      pointer.y += (pointer.ty - pointer.y) * 0.035;
+      pointer.x += (pointer.tx - pointer.x) * 0.04;
+      pointer.y += (pointer.ty - pointer.y) * 0.04;
       draw();
       raf = requestAnimationFrame(frame);
     };
 
     const onPointer = (e: PointerEvent) => {
       const rect = canvas.getBoundingClientRect();
-      pointer.tx = ((e.clientX - rect.left) / rect.width - 0.5) * 30;
+      pointer.tx = ((e.clientX - rect.left) / rect.width - 0.5) * 28;
       pointer.ty = ((e.clientY - rect.top) / rect.height - 0.5) * 36;
     };
 

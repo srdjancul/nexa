@@ -17,31 +17,20 @@ export function Hero() {
 
       <div className="mx-auto max-w-page px-4 sm:px-5">
         <div className="flex min-h-[640px] flex-col items-center justify-center py-24 text-center lg:min-h-[760px] lg:py-32">
-          <p className="rise border-line bg-white/[0.03] text-ink-muted inline-flex items-center gap-2 rounded-pill border px-3 py-1.5 font-mono text-label tracking-[0.14em] uppercase">
-            <span className="relative flex h-1.5 w-1.5">
-              <span className="bg-spectrum-1 absolute inline-flex h-full w-full animate-ping rounded-full opacity-60" />
-              <span className="bg-spectrum-1 relative inline-flex h-1.5 w-1.5 rounded-full" />
-            </span>
-            Now in open beta
-          </p>
-
-          <h1
-            className="rise font-display mt-7 max-w-[16ch] text-display leading-[1.02] font-medium tracking-[-0.03em] text-balance"
-            style={{ animationDelay: "60ms" }}
-          >
+          <h1 className="rise font-display max-w-[16ch] text-display leading-[1.02] font-medium tracking-[-0.03em] text-balance">
             Know what your agents actually did
           </h1>
 
           <p
             className="rise text-ink-muted mt-6 max-w-[36rem] text-lead leading-[1.5] text-pretty"
-            style={{ animationDelay: "120ms" }}
+            style={{ animationDelay: "60ms" }}
           >
             Tracing, cost and control for AI agents in production.
           </p>
 
           <div
-            className="rise mt-10 flex flex-col gap-3 sm:flex-row sm:items-center"
-            style={{ animationDelay: "180ms" }}
+            className="rise mt-10 flex flex-col items-center gap-3 sm:flex-row"
+            style={{ animationDelay: "120ms" }}
           >
             <Button href="#start">Start free</Button>
             <Button href="#how" variant="secondary">
@@ -51,7 +40,7 @@ export function Hero() {
 
           <p
             className="rise text-ink-faint mt-8 font-mono text-label tracking-[0.12em] uppercase"
-            style={{ animationDelay: "240ms" }}
+            style={{ animationDelay: "180ms" }}
           >
             Free during beta · No card required
           </p>
