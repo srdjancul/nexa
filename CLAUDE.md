@@ -16,6 +16,20 @@ placeholder.
 - Tailwind CSS v4 (CSS-first config; no `tailwind.config.js`)
 - Deploy target: Vercel via the GitHub integration
 
+## Visual direction (decided)
+
+- Typeface: **Manrope** via `next/font/google`, exposed as `--font-manrope`
+  and consumed through role tokens (`--font-display`, `--font-body`).
+- Colour: near-black ground, off-white ink, and a **locked five-stop spectrum
+  ramp** (`--color-spectrum-1..5`: cyan → blue → indigo → violet → ember),
+  always in that order. No hues outside the ramp. Ember is the sparing one.
+- Light is the material: glows, beams and backlit edges, never flat chromatic
+  fills. No photography, no people.
+- Hero: centred copy, short; a full-bleed **mirrored spectrum field** of lines
+  entering from both viewport edges (`src/components/visuals/spectrum-field.tsx`),
+  canvas 2D, zero dependencies.
+- Logo is a text placeholder until a mark exists.
+
 ## Conventions
 
 - **Tokens over literals.** Colors, type sizes and spacing that recur go in the
