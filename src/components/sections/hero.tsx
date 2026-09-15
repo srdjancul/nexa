@@ -16,7 +16,7 @@ export function Hero() {
       />
 
       <div className="mx-auto max-w-page px-4 sm:px-5">
-        <div className="flex min-h-[640px] flex-col items-center justify-center py-24 text-center lg:min-h-[760px] lg:py-32">
+        <div className="flex min-h-[calc(100dvh-68px)] flex-col items-center justify-center py-20 text-center">
           <h1 className="rise font-display max-w-[16ch] text-display leading-[1.02] font-medium tracking-[-0.03em] text-balance">
             Know what your agents actually did
           </h1>
