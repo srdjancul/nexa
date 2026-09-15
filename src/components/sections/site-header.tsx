@@ -15,7 +15,7 @@ export function SiteHeader() {
         {/* Wordmark placeholder — swap for the real mark when it exists. */}
         <Link
           href="/"
-          className="font-display text-[1.0625rem] font-extrabold tracking-[-0.02em]"
+          className="font-display text-[1.0625rem] font-medium tracking-[-0.01em]"
         >
           Nexa
         </Link>

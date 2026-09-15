@@ -25,9 +25,15 @@ placeholder.
   always in that order. No hues outside the ramp. Ember is the sparing one.
 - Light is the material: glows, beams and backlit edges, never flat chromatic
   fills. No photography, no people.
-- Hero: centred copy, short; a full-bleed **mirrored spectrum field** of lines
-  entering from both viewport edges (`src/components/visuals/spectrum-field.tsx`),
-  canvas 2D, zero dependencies.
+- Hero: centred copy, short; a full-bleed **mirrored field of soft spectrum
+  ribbons** entering from both viewport edges
+  (`src/components/visuals/spectrum-field.tsx`) — thick, blurred, out-of-focus
+  light, never thin wires. Canvas 2D, zero dependencies.
+- Type weight caps at **500 (medium)** for headlines and labels — nothing
+  bolder, and headline letters are never coloured or gradient-filled.
+- Buttons: liquid-metal component (source to be supplied by the owner);
+  primary is light, secondary is dark. `src/components/ui/button.tsx` holds
+  the interim styles and the stable API.
 - Logo is a text placeholder until a mark exists.
 
 ## Conventions

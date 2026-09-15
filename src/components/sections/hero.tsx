@@ -4,7 +4,7 @@ import SpectrumField from "@/components/visuals/spectrum-field";
 export function Hero() {
   return (
     <section className="relative isolate overflow-hidden">
-      {/* Full-bleed spectrum field, behind everything. */}
+      {/* Full-bleed ribbon field, behind everything. */}
       <div aria-hidden="true" className="absolute inset-0 -z-20">
         <SpectrumField />
       </div>
@@ -12,16 +12,8 @@ export function Hero() {
       {/* Quiet pocket behind the copy so it never fights the light. */}
       <div
         aria-hidden="true"
-        className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_52%_60%_at_50%_50%,var(--color-ground)_30%,transparent_100%)]"
+        className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_48%_56%_at_50%_50%,var(--color-ground)_22%,transparent_100%)]"
       />
-
-      {/* Column rules — copy and light both band to the same 12-col grid. */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 -z-10 mx-auto max-w-page px-4 sm:px-5"
-      >
-        <div className="h-full w-full opacity-35 [background-image:repeating-linear-gradient(to_right,var(--color-line)_0_1px,transparent_1px_calc(100%/12))]" />
-      </div>
 
       <div className="mx-auto max-w-page px-4 sm:px-5">
         <div className="flex min-h-[640px] flex-col items-center justify-center py-24 text-center lg:min-h-[760px] lg:py-32">
@@ -34,13 +26,10 @@ export function Hero() {
           </p>
 
           <h1
-            className="rise font-display mt-7 max-w-[15ch] text-display leading-[0.94] font-extrabold tracking-[-0.04em] text-balance"
+            className="rise font-display mt-7 max-w-[16ch] text-display leading-[1.02] font-medium tracking-[-0.03em] text-balance"
             style={{ animationDelay: "60ms" }}
           >
-            Know what your agents{" "}
-            <span className="bg-[linear-gradient(100deg,var(--color-spectrum-1),var(--color-spectrum-3)_52%,var(--color-spectrum-5))] bg-clip-text text-transparent">
-              actually did
-            </span>
+            Know what your agents actually did
           </h1>
 
           <p
