@@ -13,7 +13,7 @@ const CYAN = "0, 229, 255";
 const BLUE = "47, 123, 255";
 const EMBER = "255, 122, 69";
 
-function useLoop(draw: (ctx: CanvasRenderingContext2D, w: number, h: number, t: number) => void) {
+export function useLoop(draw: (ctx: CanvasRenderingContext2D, w: number, h: number, t: number) => void) {
   const ref = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
@@ -86,7 +86,7 @@ function useLoop(draw: (ctx: CanvasRenderingContext2D, w: number, h: number, t: 
   return ref;
 }
 
-const glowStroke = (
+export const glowStroke = (
   ctx: CanvasRenderingContext2D,
   path: () => void,
   rgb: string,

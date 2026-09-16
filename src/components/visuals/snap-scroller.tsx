@@ -1,12 +1,13 @@
 "use client";
 
 import { useEffect } from "react";
+import { stepConsumerFor } from "@/lib/section-steps";
 
 /**
- * Section-to-section wheel scrolling with a real tween. CSS scroll-snap only
- * snaps AFTER a gesture ends, which reads as a jump — this instead animates
- * the whole travel, fullpage-style. Desktop only, skipped for reduced
- * motion, and touch input is left completely native.
+ * Section-to-section wheel scrolling with a real tween. A section can
+ * register a StepConsumer to take gestures for internal steps (card
+ * carousels) before the page moves on. Desktop only; touch stays native;
+ * reduced motion opts out.
  */
 export default function SnapScroller() {
   useEffect(() => {
@@ -19,10 +20,8 @@ export default function SnapScroller() {
     let acc = 0;
     let lastWheel = 0;
 
-    const targets = () =>
-      Array.from(document.querySelectorAll<HTMLElement>("[data-snap-section]")).map(
-        el => Math.max(0, el.offsetTop - HEADER),
-      );
+    const sections = () =>
+      Array.from(document.querySelectorAll<HTMLElement>("[data-snap-section]"));
 
     // Quintic in-out: gentle launch, long braking tail into the stop.
     const ease = (t: number) => (t < 0.5 ? 16 * t ** 5 : 1 - (-2 * t + 2) ** 5 / 2);
@@ -45,10 +44,28 @@ export default function SnapScroller() {
 
     const onWheel = (e: WheelEvent) => {
       if (window.innerWidth < 1024) return;
-      const stops = targets();
-      if (stops.length < 2) return;
-      // Only manage the region the sections cover.
-      if (window.scrollY > stops[stops.length - 1] + 4) return;
+      const els = sections();
+      if (els.length < 2) return;
+      const stops = els.map(el => Math.max(0, el.offsetTop - HEADER));
+      const y = window.scrollY;
+      if (y > stops[stops.length - 1] + 4) return; // beyond managed region
+
+      let idx = 0;
+      for (let i = 0; i < stops.length; i++) {
+        if (Math.abs(y - stops[i]) < Math.abs(y - stops[idx])) idx = i;
+      }
+      const atStop = Math.abs(y - stops[idx]) < 30;
+      const consumer = atStop ? stepConsumerFor(els[idx]) : undefined;
+      const dirNow: 1 | -1 = e.deltaY > 0 ? 1 : -1;
+
+      // At the very last stop, scrolling down with nothing left to consume
+      // hands over to native scroll.
+      if (
+        idx === stops.length - 1 &&
+        dirNow === 1 &&
+        !(consumer && consumer.will(1))
+      )
+        return;
 
       e.preventDefault();
       if (animating) return;
@@ -59,14 +76,21 @@ export default function SnapScroller() {
       acc += e.deltaY;
       if (Math.abs(acc) < 40) return;
 
-      const dir = acc > 0 ? 1 : -1;
-      let idx = 0;
-      for (let i = 0; i < stops.length; i++) {
-        if (Math.abs(window.scrollY - stops[i]) < Math.abs(window.scrollY - stops[idx])) idx = i;
+      const dir: 1 | -1 = acc > 0 ? 1 : -1;
+      acc = 0;
+
+      // The section itself eats the gesture (card carousel etc.).
+      if (consumer && consumer.will(dir)) {
+        consumer.step(dir);
+        return;
+      }
+      // Coming back up from below: settle on the nearest stop first.
+      if (dir === -1 && y > stops[idx] + 30) {
+        animateTo(stops[idx]);
+        return;
       }
       const next = Math.min(stops.length - 1, Math.max(0, idx + dir));
       if (next !== idx) animateTo(stops[next]);
-      acc = 0;
     };
 
     window.addEventListener("wheel", onWheel, { passive: false });
